@@ -122,8 +122,18 @@ html, body {
   letter-spacing: -0.3px;
 }
 
+.detail-header {
+  height: calc(44px + env(safe-area-inset-top, 0px));
+}
+
+.detail-header .back-btn {
+  bottom: 2px;
+  width: 36px;
+  height: 36px;
+}
+
 .detail-title {
-  font-size: 18px;
+  font-size: 17px;
   font-weight: 400;
   color: #333333;
 }
@@ -310,35 +320,41 @@ html, body {
    SCREEN 2: PAYMENT DETAILS TICKET CARD
    ========================================== */
 .detail-content {
-  padding: 6px 14px 40px 14px;
+  padding: 4px 12px calc(8px + env(safe-area-inset-bottom, 0px)) 12px;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
 }
 
 /* Continuous Ticket Card Container */
 .ticket-card-container {
   width: 100%;
-  border-radius: 16px;
+  border-radius: 14px;
   background-color: #ffffff;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
   overflow: visible;
   position: relative;
   border: 1px solid #edf0f5;
+  margin: 0 auto;
 }
 
 /* Upper Ticket Section (QR + Timer) */
 .ticket-upper-section {
-  padding: 24px 20px 16px 20px;
+  padding: 10px 16px 6px 16px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  border-radius: 16px 16px 0 0;
+  border-radius: 14px 14px 0 0;
   background-color: #ffffff;
 }
 
 .scan-gate-text {
-  font-size: 11.5px;
+  font-size: 11px;
   color: #8e8e93;
   text-align: center;
-  margin-bottom: 14px;
+  margin-bottom: 6px;
   font-weight: 400;
 }
 
@@ -347,7 +363,7 @@ html, body {
   flex-direction: column;
   align-items: center;
   cursor: pointer;
-  padding: 4px;
+  padding: 2px;
   background-color: #ffffff;
   transition: transform 0.15s;
 }
@@ -357,29 +373,31 @@ html, body {
 }
 
 #qrcode {
-  width: 175px;
-  height: 175px;
+  width: 130px;
+  height: 130px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 #qrcode canvas, #qrcode img {
-  width: 100% !important;
-  height: 100% !important;
+  width: 130px !important;
+  height: 130px !important;
+  max-width: 130px !important;
+  max-height: 130px !important;
 }
 
 .qr-tap-msg {
-  font-size: 11.5px;
+  font-size: 10.5px;
   color: #8e8e93;
-  margin-top: 12px;
+  margin-top: 5px;
   font-weight: 400;
 }
 
 .detail-ticket-number {
-  font-size: 12.5px;
+  font-size: 12px;
   color: #444444;
-  margin-top: 5px;
+  margin-top: 3px;
   font-weight: 400;
   letter-spacing: 0.3px;
 }
@@ -387,13 +405,13 @@ html, body {
 /* Large Countdown Display */
 .countdown-timer {
   font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Outfit", sans-serif;
-  font-size: 28px;
+  font-size: 21px;
   font-weight: 400; /* Regular, non-bold matching reference */
   color: #1c1c1e;
-  margin-top: 16px;
-  margin-bottom: 14px;
-  letter-spacing: 1.5px;
-  word-spacing: 2px;
+  margin-top: 6px;
+  margin-bottom: 4px;
+  letter-spacing: 1px;
+  word-spacing: 1px;
 }
 
 /* ==========================================
@@ -401,7 +419,7 @@ html, body {
    ========================================== */
 .ticket-perforation-divider {
   position: relative;
-  height: 32px;
+  height: 20px;
   background-color: #ffffff;
   display: flex;
   align-items: center;
@@ -413,85 +431,89 @@ html, body {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  width: 32px;
-  height: 32px;
+  width: 22px;
+  height: 22px;
   border-radius: 50%;
   background-color: #f2f4f7; /* Exact match to page background */
   z-index: 2;
 }
 
 .left-notch {
-  left: -16px;
-  box-shadow: inset -3px 0 4px rgba(0, 0, 0, 0.03);
+  left: -11px;
+  box-shadow: inset -2px 0 3px rgba(0, 0, 0, 0.03);
 }
 
 .right-notch {
-  right: -16px;
-  box-shadow: inset 3px 0 4px rgba(0, 0, 0, 0.03);
+  right: -11px;
+  box-shadow: inset 2px 0 3px rgba(0, 0, 0, 0.03);
 }
 
 .perforation-dashed-line {
-  width: calc(100% - 44px);
-  border-top: 2px dashed #b8bcc4; /* Clearly visible, prominent dashed line */
+  width: calc(100% - 32px);
+  border-top: 1.5px dashed #b8bcc4; /* Clearly visible, prominent dashed line */
 }
 
 /* ==========================================
    LOWER TICKET SECTION (TRIP METADATA)
    ========================================== */
 .ticket-lower-section {
-  padding: 16px 20px 28px 20px;
-  border-radius: 0 0 16px 16px;
+  padding: 8px 16px 12px 16px;
+  border-radius: 0 0 14px 14px;
   background-color: #ffffff;
 }
 
 /* Validity Banner */
 .validity-banner {
   background-color: #f1f2f6;
-  border-radius: 8px;
-  padding: 8px 14px;
+  border-radius: 6px;
+  padding: 5px 8px;
   text-align: center;
-  margin-bottom: 16px;
+  margin-bottom: 8px;
 }
 
 .banner-text {
-  font-size: 11px;
+  font-size: 9.5px;
   color: #636366;
   font-weight: 400;
-  line-height: 1.45;
+  line-height: 1.35;
   display: block;
 }
 
 /* Route Header */
 .route-header {
-  margin-bottom: 14px;
+  margin-bottom: 6px;
 }
 
 .route-title-short {
-  font-size: 14.5px;
+  font-size: 12.5px;
   font-weight: 400; /* Regular as in photo */
   color: #1c1c1e;
   letter-spacing: -0.2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: block;
 }
 
 /* Route Meta Row */
 .route-meta-row {
-  margin-bottom: 4px;
+  margin-bottom: 2px;
 }
 
 .meta-micro-label {
   display: block;
-  font-size: 11px;
+  font-size: 10px;
   color: #8e8e93;
   font-weight: 400;
-  margin-bottom: 4px;
+  margin-bottom: 2px;
 }
 
 .route-badge-item {
   display: flex;
   align-items: center;
-  gap: 5px;
+  gap: 4px;
   font-weight: 600;
-  font-size: 13.5px;
+  font-size: 12.5px;
   color: #1c1c1e;
 }
 
@@ -500,19 +522,19 @@ html, body {
 }
 
 .chevron-svg {
-  margin-left: 6px;
+  margin-left: 4px;
 }
 
 .ticket-sublabel {
-  font-size: 12.5px;
+  font-size: 12px;
   color: #1c1c1e;
   font-weight: 400;
 }
 
 .detail-divider {
   border: none;
-  border-top: 1.5px solid #d1d5db; /* Bolder, clearly visible divider */
-  margin: 14px 0;
+  border-top: 1px solid #e8eaed;
+  margin: 6px 0;
 }
 
 /* Passenger Section */
@@ -522,13 +544,13 @@ html, body {
 }
 
 .passenger-category {
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 600;
   color: #1c1c1e;
 }
 
 .passenger-qty {
-  font-size: 13px;
+  font-size: 12px;
   color: #1c1c1e;
   font-weight: 400;
 }
@@ -549,13 +571,13 @@ html, body {
 }
 
 .meta-label {
-  font-size: 13px;
+  font-size: 12px;
   color: #636366;
   font-weight: 400;
 }
 
 .breakdown-val {
-  font-size: 13px;
+  font-size: 12px;
   color: #1c1c1e;
   font-weight: 400;
 }
@@ -564,7 +586,7 @@ html, body {
 .fare-table {
   display: flex;
   flex-direction: column;
-  gap: 7px;
+  gap: 3px;
 }
 
 .fare-row {
@@ -572,31 +594,31 @@ html, body {
 }
 
 .fare-label {
-  font-size: 13px;
+  font-size: 12px;
   color: #636366;
   font-weight: 400;
 }
 
 .fare-val {
-  font-size: 13px;
+  font-size: 12px;
   color: #1c1c1e;
   font-weight: 400;
   font-family: "Inter", -apple-system, BlinkMacSystemFont, "Roboto", sans-serif;
 }
 
 .net-payable-row {
-  margin-top: 4px;
-  padding-top: 8px;
+  margin-top: 2px;
+  padding-top: 4px;
 }
 
 .net-payable-label {
-  font-size: 13px;
+  font-size: 12.5px;
   font-weight: 600;
   color: #1c1c1e;
 }
 
 .net-payable-val {
-  font-size: 13px;
+  font-size: 12.5px;
   font-weight: 600;
   color: #165ecf !important; /* Signature blue net payable */
 }
