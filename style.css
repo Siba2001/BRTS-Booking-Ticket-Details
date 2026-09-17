@@ -320,7 +320,7 @@ html, body {
    SCREEN 2: PAYMENT DETAILS TICKET CARD
    ========================================== */
 .detail-content {
-  padding: 4px 12px calc(20px + env(safe-area-inset-bottom, 0px)) 12px;
+  padding: 2px 14px calc(18px + env(safe-area-inset-bottom, 0px)) 14px;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
   display: flex;
@@ -342,7 +342,7 @@ html, body {
 
 /* Upper Ticket Section (QR + Timer) */
 .ticket-upper-section {
-  padding: 10px 16px 6px 16px;
+  padding: 12px 18px 8px 18px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -363,7 +363,7 @@ html, body {
   flex-direction: column;
   align-items: center;
   cursor: pointer;
-  padding: 2px;
+  padding: 0;
   background-color: #ffffff;
   transition: transform 0.15s;
 }
@@ -373,29 +373,29 @@ html, body {
 }
 
 #qrcode {
-  width: 130px;
-  height: 130px;
+  width: 160px;
+  height: 160px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 #qrcode canvas, #qrcode img {
-  width: 130px !important;
-  height: 130px !important;
-  max-width: 130px !important;
-  max-height: 130px !important;
+  width: 160px !important;
+  height: 160px !important;
+  max-width: 160px !important;
+  max-height: 160px !important;
 }
 
 .qr-tap-msg {
-  font-size: 10.5px;
+  font-size: 11px;
   color: #8e8e93;
-  margin-top: 5px;
+  margin-top: 6px;
   font-weight: 400;
 }
 
 .detail-ticket-number {
-  font-size: 12px;
+  font-size: 12.5px;
   color: #444444;
   margin-top: 3px;
   font-weight: 400;
@@ -405,11 +405,11 @@ html, body {
 /* Large Countdown Display */
 .countdown-timer {
   font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Outfit", sans-serif;
-  font-size: 22px;
+  font-size: 26px;
   font-weight: 400; /* Regular, non-bold matching reference */
   color: #1c1c1e;
   margin-top: 8px;
-  margin-bottom: 6px;
+  margin-bottom: 8px;
   letter-spacing: 1px;
   word-spacing: 1px;
 }
@@ -419,7 +419,7 @@ html, body {
    ========================================== */
 .ticket-perforation-divider {
   position: relative;
-  height: 20px;
+  height: 24px;
   background-color: #ffffff;
   display: flex;
   align-items: center;
@@ -431,25 +431,25 @@ html, body {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  width: 22px;
-  height: 22px;
+  width: 26px;
+  height: 26px;
   border-radius: 50%;
   background-color: #f2f4f7; /* Exact match to page background */
   z-index: 2;
 }
 
 .left-notch {
-  left: -11px;
+  left: -13px;
   box-shadow: inset -2px 0 3px rgba(0, 0, 0, 0.03);
 }
 
 .right-notch {
-  right: -11px;
+  right: -13px;
   box-shadow: inset 2px 0 3px rgba(0, 0, 0, 0.03);
 }
 
 .perforation-dashed-line {
-  width: calc(100% - 32px);
+  width: calc(100% - 36px);
   border-top: 1.5px dashed #b8bcc4; /* Clearly visible, prominent dashed line */
 }
 
@@ -466,13 +466,13 @@ html, body {
 .validity-banner {
   background-color: #f1f2f6;
   border-radius: 6px;
-  padding: 6px 10px;
+  padding: 6px 12px;
   text-align: center;
   margin-bottom: 10px;
 }
 
 .banner-text {
-  font-size: 9.5px;
+  font-size: 10px;
   color: #636366;
   font-weight: 400;
   line-height: 1.35;
@@ -485,8 +485,8 @@ html, body {
 }
 
 .route-title-short {
-  font-size: 12.5px;
-  font-weight: 400; /* Regular as in photo */
+  font-size: 13.5px;
+  font-weight: 500; /* Medium weight matching photo */
   color: #1c1c1e;
   letter-spacing: -0.2px;
   white-space: nowrap;
