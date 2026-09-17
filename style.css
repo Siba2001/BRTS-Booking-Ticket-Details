@@ -1,74 +1,71 @@
-/* Reset and Base Styles */
+/* Reset and Base Mobile Styles */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Outfit', sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Inter", "SF Pro Display", "SF Pro Text", "Outfit", "Poppins", "Segoe UI", Roboto, sans-serif;
   -webkit-tap-highlight-color: transparent;
 }
 
-body {
-  background-color: #f3f4f6;
-  color: #1f2937;
+html, body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  position: fixed;
+  background-color: #f2f4f7;
+  color: #1c1c1e;
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
-  overflow: hidden;
 }
 
-/* Responsive Application Container (native look on mobile, centered card on desktop) */
+/* Responsive Application Container */
 .app-container {
   position: relative;
   width: 100%;
-  max-width: 480px;
-  height: 100vh;
-  height: 100dvh; /* Dynamic viewport height to prevent keyboard/address bar issues */
-  background-color: #f6f8fb;
+  max-width: 430px; /* iPhone 12 standard viewport width */
+  height: 100%;
+  height: 100dvh;
+  background-color: #f2f4f7;
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
 }
 
-/* Fullscreen on typical mobile devices */
 @media (max-width: 480px) {
-  body {
-    background-color: #f6f8fb;
-  }
   .app-container {
     max-width: 100%;
-    height: 100vh;
     height: 100dvh;
     box-shadow: none;
   }
 }
 
-/* Screens Wrapper and Sliding Router Layout */
+/* Screens Router Wrapper */
 .screens-wrapper {
   position: relative;
   flex-grow: 1;
   width: 100%;
-  min-height: 0; /* Prevent expanding beyond parent flex container */
   overflow: hidden;
 }
 
 .screen {
   position: absolute;
   top: 0;
-  bottom: 0;
   left: 0;
-  right: 0;
-  background-color: #f6f8fb;
+  width: 100%;
+  height: 100%;
+  background-color: #f2f4f7;
   display: flex;
   flex-direction: column;
-  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+  transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.28s ease;
   opacity: 0;
   pointer-events: none;
   z-index: 1;
 }
 
-/* Screen transition directions */
 #booking-screen {
   transform: translateX(0);
 }
@@ -91,50 +88,56 @@ body {
 
 .screen-content {
   flex-grow: 1;
-  min-height: 0; /* Crucial for scrolling inside flex layout on mobile */
   overflow-y: auto;
-  -webkit-overflow-scrolling: touch; /* Enable smooth momentum scrolling on mobile devices */
-  padding: 16px 20px calc(80px + env(safe-area-inset-bottom, 0px)) 20px; /* extra bottom padding for bottom nav & safe areas */
+  -webkit-overflow-scrolling: touch;
+  padding: 12px 14px calc(92px + env(safe-area-inset-bottom, 0px)) 14px;
   display: flex;
   flex-direction: column;
   gap: 16px;
 }
 
-/* Remove default scrollbars but keep functionality */
 .screen-content::-webkit-scrollbar {
   display: none;
 }
 
-/* Headers with Safe Area Inset Support */
+/* ==========================================
+   APP HEADERS (Transparent, No white box/border)
+   ========================================== */
 .app-header {
   height: calc(56px + env(safe-area-inset-top, 0px));
   padding-top: env(safe-area-inset-top, 0px);
-  background-color: #ffffff;
+  background-color: transparent; /* Seamless with background, NO white border */
   display: flex;
   align-items: center;
   justify-content: center;
-  border-bottom: 1px solid #edf2f7;
   position: relative;
+  border-bottom: none;
   flex-shrink: 0;
 }
 
-.app-header h1 {
-  font-size: 19px;
-  font-weight: 500;
-  color: #1a202c;
+.screen-title {
+  font-size: 23px;
+  font-weight: 350; /* Clean, light-regular weight as in screenshot */
+  color: #1c1c1e;
+  letter-spacing: -0.3px;
+}
+
+.detail-title {
+  font-size: 18px;
+  font-weight: 400;
+  color: #333333;
 }
 
 .back-btn {
   position: absolute;
-  left: 16px;
-  bottom: 10px; /* Aligns correctly even when safe area top is applied */
+  left: 8px;
+  bottom: 8px;
   background: none;
   border: none;
-  font-size: 18px;
-  color: #4a5568;
+  color: #1c1c1e;
   cursor: pointer;
-  width: 36px;
-  height: 36px;
+  width: 40px;
+  height: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -143,30 +146,27 @@ body {
 }
 
 .back-btn:active {
-  background-color: #edf2f7;
+  background-color: rgba(0, 0, 0, 0.05);
 }
 
-/* Card General Styling */
-.booking-card, .qr-card, .trip-details-card {
-  background-color: #ffffff;
-  border-radius: 16px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
-  border: 1px solid rgba(226, 232, 240, 0.8);
-  padding: 20px;
-  transition: transform 0.2s, box-shadow 0.2s;
-}
-
+/* ==========================================
+   SCREEN 1: BOOKING SCREEN CARD
+   ========================================== */
 .booking-card {
+  background-color: #ffffff;
+  border-radius: 14px;
+  border: 1px solid #edf0f5;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.03);
+  padding: 20px 18px 18px 18px;
   cursor: pointer;
-  margin-top: 10px;
+  transition: transform 0.15s ease;
+  margin-top: 4px;
 }
 
 .booking-card:active {
-  transform: scale(0.98);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  transform: scale(0.985);
 }
 
-/* Card Grid Rows */
 .flex-row {
   display: flex;
   justify-content: space-between;
@@ -185,48 +185,58 @@ body {
 }
 
 .label {
-  font-size: 12.5px;
+  font-size: 14.5px;
   font-weight: 600;
-  color: #000000;
-  margin-bottom: 4px;
+  color: #111827;
+  margin-bottom: 3px;
 }
 
 .value {
   font-size: 13.5px;
-  color: #4a5568;
+  color: #374151;
   font-weight: 400;
 }
 
-.bold {
-  font-weight: 600;
-}
-
 .text-green {
-  color: #10b981;
+  color: #5eb77f; /* Exact soft mint green matching screenshot */
+  font-size: 13.5px;
+  font-weight: 400;
+  line-height: 1.35;
 }
 
 .active-indicator {
-  font-size: 14px;
+  font-size: 13.5px;
+  font-weight: 400;
 }
 
 .price-tag {
-  font-size: 16px;
-  font-weight: 700;
-  color: #1a202c;
+  font-size: 14.5px;
+  font-weight: 400;
+  color: #111827;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "SF Pro Text", "Roboto", sans-serif;
+  letter-spacing: -0.1px;
+}
+
+.rupee-symbol {
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Roboto", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  display: inline-block;
+  margin-right: 2px;
+  letter-spacing: normal;
 }
 
 .card-divider {
   border: none;
-  border-top: 1.5px solid #edf2f7;
-  margin: 16px 0;
+  border-top: 1px solid #dcdfe4;
+  margin: 18px 0;
 }
 
-/* Route Section */
+/* Route Section on Screen 1 */
 .route-details-container {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   gap: 12px;
-  margin-top: 8px;
 }
 
 .route-icon {
@@ -234,70 +244,102 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding-top: 2px;
 }
 
 .route-text {
-  font-size: 13.5px;
-  line-height: 1.5;
+  font-size: 13px;
+  line-height: 1.45;
   color: #2d3748;
-  font-weight: 600;
+  font-weight: 500;
+  text-transform: uppercase;
 }
 
 .to-text {
-  color: #2b6cb0;
-  font-weight: 700;
+  color: #165ecf;
+  font-weight: 600;
 }
 
-/* Bottom Navigation Bar with Safe Area Bottom Support */
+/* ==========================================
+   BOTTOM NAVIGATION BAR
+   ========================================== */
 .bottom-nav {
-  height: calc(60px + env(safe-area-inset-bottom, 0px));
-  padding-bottom: env(safe-area-inset-bottom, 0px);
-  background-color: #2259c3;
+  height: calc(80px + env(safe-area-inset-bottom, 0px));
+  padding-top: 10px;
+  padding-bottom: calc(22px + env(safe-area-inset-bottom, 0px));
+  box-sizing: border-box;
+  background-color: #1a62d6; /* Exact royal blue matching screenshot */
   display: flex;
   justify-content: space-around;
-  align-items: center;
+  align-items: flex-start;
   position: absolute;
   bottom: 0;
   width: 100%;
   z-index: 10;
-  box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 -6px 20px rgba(0, 0, 0, 0.08); /* Soft blur gradient above bar */
 }
 
 .nav-item {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  color: #cbd5e0;
+  justify-content: flex-start;
+  color: #ffffff;
   text-decoration: none;
   font-size: 11px;
-  font-weight: 500;
-  gap: 4px;
+  font-weight: 400;
+  gap: 5px;
   flex-grow: 1;
-  height: 100%;
-  transition: color 0.2s;
+  opacity: 0.95;
+  transition: transform 0.15s;
 }
 
 .nav-item svg {
-  margin-top: 4px;
+  width: 24px;
+  height: 24px;
 }
 
 .nav-item.active {
-  color: #ffffff;
+  opacity: 1;
 }
 
-/* DETAIL STYLING */
+.nav-item:active svg {
+  transform: scale(0.92);
+}
+
+/* ==========================================
+   SCREEN 2: PAYMENT DETAILS TICKET CARD
+   ========================================== */
 .detail-content {
-  padding-bottom: 40px;
+  padding: 6px 14px 40px 14px;
 }
 
-/* QR Code Card */
-.qr-card {
+/* Continuous Ticket Card Container */
+.ticket-card-container {
+  width: 100%;
+  border-radius: 16px;
+  background-color: #ffffff;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+  overflow: visible;
+  position: relative;
+  border: 1px solid #edf0f5;
+}
+
+/* Upper Ticket Section (QR + Timer) */
+.ticket-upper-section {
+  padding: 24px 20px 16px 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 24px 20px;
+  border-radius: 16px 16px 0 0;
+  background-color: #ffffff;
+}
+
+.scan-gate-text {
+  font-size: 11.5px;
+  color: #8e8e93;
+  text-align: center;
+  margin-bottom: 14px;
+  font-weight: 400;
 }
 
 .qr-container-wrapper {
@@ -305,10 +347,9 @@ body {
   flex-direction: column;
   align-items: center;
   cursor: pointer;
-  transition: transform 0.2s;
-  padding: 12px;
+  padding: 4px;
   background-color: #ffffff;
-  border-radius: 8px;
+  transition: transform 0.15s;
 }
 
 .qr-container-wrapper:active {
@@ -316,12 +357,11 @@ body {
 }
 
 #qrcode {
-  width: 180px;
-  height: 180px;
+  width: 175px;
+  height: 175px;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 12px;
 }
 
 #qrcode canvas, #qrcode img {
@@ -330,126 +370,167 @@ body {
 }
 
 .qr-tap-msg {
-  font-size: 12px;
-  color: #a0aec0;
+  font-size: 11.5px;
+  color: #8e8e93;
+  margin-top: 12px;
   font-weight: 400;
-  margin-top: 4px;
 }
 
 .detail-ticket-number {
   font-size: 12.5px;
-  color: #4a5568;
-  margin-top: 4px;
-  font-weight: 500;
-  letter-spacing: 0.5px;
+  color: #444444;
+  margin-top: 5px;
+  font-weight: 400;
+  letter-spacing: 0.3px;
 }
 
-/* Large Countdown Timer display */
+/* Large Countdown Display */
 .countdown-timer {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 26px;
-  font-weight: 700;
-  color: #1a202c;
-  margin-top: 18px;
-  letter-spacing: 1px;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Outfit", sans-serif;
+  font-size: 28px;
+  font-weight: 400; /* Regular, non-bold matching reference */
+  color: #1c1c1e;
+  margin-top: 16px;
+  margin-bottom: 14px;
+  letter-spacing: 1.5px;
   word-spacing: 2px;
-  animation: pulse-timer 2s infinite alternate;
 }
 
-@keyframes pulse-timer {
-  0% {
-    text-shadow: 0 0 2px rgba(26, 32, 44, 0.1);
-  }
-  100% {
-    text-shadow: 0 0 10px rgba(34, 89, 195, 0.25);
-  }
+/* ==========================================
+   TICKET PERFORATION DIVIDER (PROMINENT BIG CUT + CLEAR DASHES)
+   ========================================== */
+.ticket-perforation-divider {
+  position: relative;
+  height: 32px;
+  background-color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: visible;
+}
+
+.cutout-notch {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: #f2f4f7; /* Exact match to page background */
+  z-index: 2;
+}
+
+.left-notch {
+  left: -16px;
+  box-shadow: inset -3px 0 4px rgba(0, 0, 0, 0.03);
+}
+
+.right-notch {
+  right: -16px;
+  box-shadow: inset 3px 0 4px rgba(0, 0, 0, 0.03);
+}
+
+.perforation-dashed-line {
+  width: calc(100% - 44px);
+  border-top: 2px dashed #b8bcc4; /* Clearly visible, prominent dashed line */
+}
+
+/* ==========================================
+   LOWER TICKET SECTION (TRIP METADATA)
+   ========================================== */
+.ticket-lower-section {
+  padding: 16px 20px 28px 20px;
+  border-radius: 0 0 16px 16px;
+  background-color: #ffffff;
 }
 
 /* Validity Banner */
 .validity-banner {
-  background-color: #f1f5f9;
+  background-color: #f1f2f6;
   border-radius: 8px;
-  padding: 12px 16px;
-  border: 1px solid #e2e8f0;
+  padding: 8px 14px;
   text-align: center;
+  margin-bottom: 16px;
 }
 
 .banner-text {
-  font-size: 11.5px;
-  color: #64748b;
-  font-weight: 500;
-  line-height: 1.4;
+  font-size: 11px;
+  color: #636366;
+  font-weight: 400;
+  line-height: 1.45;
+  display: block;
 }
 
-/* Trip Details Section */
-.trip-details-card {
-  padding: 18px;
-}
-
+/* Route Header */
 .route-header {
-  margin-bottom: 10px;
+  margin-bottom: 14px;
 }
 
 .route-title-short {
   font-size: 14.5px;
-  font-weight: 600;
-  color: #1a202c;
-  word-break: break-word;
+  font-weight: 400; /* Regular as in photo */
+  color: #1c1c1e;
+  letter-spacing: -0.2px;
 }
 
-.bus-info-row {
-  display: flex;
-  align-items: center;
-  gap: 12px;
+/* Route Meta Row */
+.route-meta-row {
   margin-bottom: 4px;
 }
 
-.bus-tag {
+.meta-micro-label {
+  display: block;
+  font-size: 11px;
+  color: #8e8e93;
+  font-weight: 400;
+  margin-bottom: 4px;
+}
+
+.route-badge-item {
   display: flex;
   align-items: center;
-  gap: 6px;
-  background-color: #f1f5f9;
-  border: 1px solid #cbd5e1;
-  padding: 4px 8px;
-  border-radius: 6px;
-  font-size: 12px;
+  gap: 5px;
   font-weight: 600;
-  color: #475569;
+  font-size: 13.5px;
+  color: #1c1c1e;
+}
+
+.bus-icon-svg {
+  color: #1c1c1e;
+}
+
+.chevron-svg {
+  margin-left: 6px;
 }
 
 .ticket-sublabel {
-  font-size: 12px;
-  color: #64748b;
-  font-weight: 500;
+  font-size: 12.5px;
+  color: #1c1c1e;
+  font-weight: 400;
 }
 
 .detail-divider {
   border: none;
-  border-top: 1px solid #edf2f7;
+  border-top: 1.5px solid #d1d5db; /* Bolder, clearly visible divider */
   margin: 14px 0;
 }
 
-/* Passengers */
+/* Passenger Section */
 .passenger-section {
   display: flex;
   flex-direction: column;
-  gap: 4px;
 }
 
-.meta-label {
-  font-size: 12px;
-  color: #718096;
-  font-weight: 500;
-}
-
-.meta-val {
-  font-size: 14px;
-  color: #2d3748;
-}
-
-.meta-count {
+.passenger-category {
   font-size: 13px;
-  color: #4a5568;
+  font-weight: 600;
+  color: #1c1c1e;
+}
+
+.passenger-qty {
+  font-size: 13px;
+  color: #1c1c1e;
+  font-weight: 400;
 }
 
 .text-right {
@@ -457,6 +538,7 @@ body {
   align-items: flex-end;
 }
 
+/* Transaction Section */
 .transaction-breakdown {
   display: flex;
   flex-direction: column;
@@ -466,17 +548,23 @@ body {
   align-items: center;
 }
 
+.meta-label {
+  font-size: 13px;
+  color: #636366;
+  font-weight: 400;
+}
+
 .breakdown-val {
   font-size: 13px;
-  color: #2d3748;
-  font-weight: 500;
+  color: #1c1c1e;
+  font-weight: 400;
 }
 
 /* Fare Breakdown */
 .fare-table {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 7px;
 }
 
 .fare-row {
@@ -485,27 +573,37 @@ body {
 
 .fare-label {
   font-size: 13px;
-  color: #718096;
-  font-weight: 500;
+  color: #636366;
+  font-weight: 400;
 }
 
 .fare-val {
-  font-size: 13.5px;
-  color: #2d3748;
-  font-weight: 500;
-}
-
-.dark {
-  color: #1a202c !important;
+  font-size: 13px;
+  color: #1c1c1e;
+  font-weight: 400;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Roboto", sans-serif;
 }
 
 .net-payable-row {
   margin-top: 4px;
   padding-top: 8px;
-  border-top: 1px dashed #e2e8f0;
 }
 
-/* Enlarged QR Modal */
+.net-payable-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #1c1c1e;
+}
+
+.net-payable-val {
+  font-size: 13px;
+  font-weight: 600;
+  color: #165ecf !important; /* Signature blue net payable */
+}
+
+/* ==========================================
+   ENLARGED QR MODAL OVERLAY
+   ========================================== */
 .qr-overlay {
   position: absolute;
   top: 0;
@@ -529,15 +627,15 @@ body {
 
 .qr-overlay-card {
   background-color: #ffffff;
-  padding: 30px 24px;
-  border-radius: 24px;
+  padding: 28px 24px;
+  border-radius: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
   max-width: 320px;
   width: 85%;
   box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
-  transform: scale(0.9);
+  transform: scale(0.92);
   transition: transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
@@ -548,17 +646,17 @@ body {
 .qr-overlay-card h2 {
   font-size: 18px;
   font-weight: 600;
-  margin-bottom: 20px;
-  color: #1a202c;
+  margin-bottom: 18px;
+  color: #111827;
 }
 
 #qrcode-enlarged {
-  width: 230px;
-  height: 230px;
+  width: 220px;
+  height: 220px;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 16px;
+  margin-bottom: 14px;
 }
 
 #qrcode-enlarged canvas, #qrcode-enlarged img {
@@ -568,7 +666,7 @@ body {
 
 .overlay-ticket-number {
   font-size: 13.5px;
-  color: #718096;
+  color: #6b7280;
   font-weight: 500;
   letter-spacing: 0.5px;
   margin-bottom: 20px;
@@ -576,7 +674,7 @@ body {
 
 .close-overlay-btn {
   width: 100%;
-  background-color: #2259c3;
+  background-color: #165ecf;
   color: #ffffff;
   border: none;
   padding: 12px;
@@ -588,5 +686,5 @@ body {
 }
 
 .close-overlay-btn:active {
-  background-color: #1a449c;
+  background-color: #124eb0;
 }
